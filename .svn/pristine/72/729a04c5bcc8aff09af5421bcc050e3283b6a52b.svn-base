@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="FIc-k9-hzy" customClass="ShopingCarCell">
+            <rect key="frame" x="0.0" y="0.0" width="380" height="95"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FIc-k9-hzy" id="SOF-mR-Cav">
+                <rect key="frame" x="0.0" y="0.0" width="380" height="94"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" id="I6X-wg-5iq">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="95"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="购物车_图占位.png" id="chs-3n-TFE">
+                                <rect key="frame" x="8" y="12" width="72" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="QBJ-l4-BOy" customClass="ITTImageView">
+                                <rect key="frame" x="8" y="12" width="72" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="额轻轻为恶趣味企鹅全文王企鹅企鹅企" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eOi-1s-td6">
+                                <rect key="frame" x="88" y="3" width="230" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品编号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7x2-fA-Rt7">
+                                <rect key="frame" x="88" y="32" width="62" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="256467567578" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XEA-4o-llH">
+                                <rect key="frame" x="143" y="30" width="164" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="188元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h3u-ni-xmj">
+                                <rect key="frame" x="89" y="63" width="93" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" id="qSQ-F5-rdo">
+                                <rect key="frame" x="157" y="57" width="155" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="x40-dh-d7I">
+                                        <rect key="frame" x="4" y="2" width="39" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <state key="normal" backgroundImage="购物车-默认.png"/>
+                                        <state key="highlighted" backgroundImage="购物车-选中.png"/>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="购物车_数字输入.png" id="0wA-Bk-gXj">
+                                        <rect key="frame" x="48" y="0.0" width="56" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dK4-qg-PhX">
+                                        <rect key="frame" x="112" y="2" width="39" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <state key="normal" backgroundImage="购物车+默认.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted" backgroundImage="购物车+选中.png"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="UmC-9b-64h">
+                                <rect key="frame" x="326" y="30" width="50" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="删除" backgroundImage="购物车2_删除-默认.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted" backgroundImage="购物车2_删除-选中.png"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="商品列表_分割线.png" id="yR8-p3-stN">
+                                <rect key="frame" x="0.0" y="94" width="400" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </subviews>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="BackGrondView" destination="I6X-wg-5iq" id="xLN-Bs-nBs"/>
+                <outlet property="DeleteBtn" destination="UmC-9b-64h" id="xhc-t6-DNH"/>
+                <outlet property="NameLable" destination="eOi-1s-td6" id="LPQ-kR-gFN"/>
+                <outlet property="NubmberTextField" destination="0wA-Bk-gXj" id="BvE-cd-Alr"/>
+                <outlet property="NumberLable" destination="XEA-4o-llH" id="pXJ-Ip-Cvo"/>
+                <outlet property="PriceLable" destination="h3u-ni-xmj" id="7wn-8e-3X9"/>
+                <outlet property="ProductId" destination="XEA-4o-llH" id="uiK-MI-gpi"/>
+                <outlet property="ShopImageView" destination="QBJ-l4-BOy" id="Gaf-AA-Gqz"/>
+                <outlet property="increaseBtn" destination="dK4-qg-PhX" id="Shq-VV-OaK"/>
+                <outlet property="reduceBtn" destination="x40-dh-d7I" id="jVb-dc-aBK"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="商品列表_分割线.png" width="640" height="1"/>
+        <image name="购物车+选中.png" width="78" height="46"/>
+        <image name="购物车+默认.png" width="78" height="46"/>
+        <image name="购物车-选中.png" width="78" height="46"/>
+        <image name="购物车-默认.png" width="78" height="46"/>
+        <image name="购物车2_删除-选中.png" width="98" height="54"/>
+        <image name="购物车2_删除-默认.png" width="98" height="54"/>
+        <image name="购物车_图占位.png" width="150" height="150"/>
+        <image name="购物车_数字输入.png" width="78" height="46"/>
+    </resources>
+</document>

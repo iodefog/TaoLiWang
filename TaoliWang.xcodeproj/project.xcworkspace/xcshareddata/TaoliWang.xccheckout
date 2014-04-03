@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>11619F5C-4224-43B2-A5F2-030D5502E84C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TaoliWang</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C81DBB6A-73F5-47A7-9ECE-6D456C555ECD</key>
+		<string>https://192.168.1.210:8443/svn/ios/trunk/taoliwang/Taoliwang</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TaoliWang.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C81DBB6A-73F5-47A7-9ECE-6D456C555ECD</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>C81DBB6A-73F5-47A7-9ECE-6D456C555ECD</key>
+		<string>https://192.168.1.210:8443/svn/ios</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://192.168.1.210:8443/svn/ios/trunk/taoliwang/Taoliwang/TaoliWang.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C81DBB6A-73F5-47A7-9ECE-6D456C555ECD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryBranchesRelativeLocationKey</key>
+			<string>branches</string>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlRepositoryTagsRelativeLocationKey</key>
+			<string>tags</string>
+			<key>IDESourceControlRepositoryTrunkRelativeLocationKey</key>
+			<string>trunk</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C81DBB6A-73F5-47A7-9ECE-6D456C555ECD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Taoliwang</string>
+		</dict>
+	</array>
+</dict>
+</plist>

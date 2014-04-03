@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Point</key>
+	<array>
+		<string>不限</string>
+		<string>0~330</string>
+		<string>330~660</string>
+		<string>660~1650</string>
+		<string>1650~3300</string>
+		<string>3300~6600</string>
+		<string>6600~16500</string>
+		<string>16500~33000</string>
+		<string>33000~99000</string>
+		<string>99000以上</string>
+	</array>
+	<key>Money</key>
+	<array>
+		<string>不限</string>
+		<string>0~100</string>
+		<string>100~200</string>
+		<string>200~300</string>
+		<string>500~1000</string>
+		<string>1000以上</string>
+	</array>
+</dict>
+</plist>

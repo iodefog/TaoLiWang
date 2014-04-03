@@ -1,0 +1,275 @@
+//
+//  MySpaceViewController.m
+//  TaoliWang
+//
+//  Created by Mac OS X on 14-2-10.
+//  Copyright (c) 2014年 Custom. All rights reserved.
+//
+
+#import "MySpaceViewController.h"
+#import "YaoYiYaoViewController.h"
+#import "SenderContentViewController.h"
+#import "MySpaceList.h"
+#import "MySpaceCell.h"
+#import "MySpaceModel.h"
+#import "ShareCommon.h"
+
+#define isNomalColor        [UIColor colorWithRed:246/255.0 green:241/255.0 blue:234/255.0 alpha:1.0]
+#define isSelectColor       [UIColor colorWithRed:246/255.0 green:241/255.0 blue:234/255.0 alpha:1.0]
+
+@interface MySpaceViewController ()
+@property (nonatomic, strong)ITTTabBarController            *TabBarControl;
+/**
+ *  上下拉刷新
+ */
+@property (strong, nonatomic)MJRefreshHeaderView                *headview;
+@property (strong, nonatomic)MJRefreshFooterView                *footView;
+@property (assign, nonatomic) int                               indexpage;
+@property (weak, nonatomic) IBOutlet UITableView                *ContentTableView;
+@property (weak, nonatomic) IBOutlet UIView                     *BackView;
+@property (nonatomic, strong)NSMutableArray                     *DataArray;
+@end
+
+@implementation MySpaceViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+#pragma mark
+#pragma mark StartRequestData
+-(void)startListRequestDataWithRefrsh:(MJRefreshBaseView *)fresh andPageNo:(NSString *)page
+{
+    NSDictionary *param =  @{@"yhid": self.UserId,
+                             @"pageNo": page,
+                             @"pageSize": @"6"};
+    [MySpaceList requestWithParameters:param withIndicatorView:self.view withCancelSubject:nil onRequestStart:^(ITTBaseDataRequest *request) {
+        
+    } onRequestFinished:^(ITTBaseDataRequest *request) {
+        [self setDataDic:request.handleredResult toManager:self.DataArray andRefresh:fresh];
+        [self.ContentTableView reloadData];
+    } onRequestCanceled:^(ITTBaseDataRequest *request) {
+        
+    } onRequestFailed:^(ITTBaseDataRequest *request) {
+        
+    }];
+    
+}
+-(void)setDataDic:(NSDictionary *)resultDic toManager:(NSMutableArray *)baseManage andRefresh:(MJRefreshBaseView *)refresh
+{
+    
+    if (refresh == _headview) {
+        [self.DataArray removeAllObjects];
+        [self.DataArray addObjectsFromArray:resultDic[@"MySpaceModel"]];
+    }else if (refresh == _footView){
+        [self.DataArray addObjectsFromArray:resultDic[@"MySpaceModel"]];
+    }else{
+        [self.DataArray removeAllObjects];
+        [self.DataArray addObjectsFromArray:resultDic[@"MySpaceModel"]];
+        [self performSelector:@selector(doneWithView:) withObject:refresh afterDelay:0.5];
+    }
+    [self setHomeUI];
+}
+#pragma mark -
+#pragma mark RefreshViewAndLoadMoreView
+
+/**
+ *  上下拉刷新界面
+ *
+ *  @param arr
+ */
+-(void)GetEgoRefreshView
+{
+    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
+    header.scrollView = self.ContentTableView;
+    header.delegate = self;
+    _headview = header;
+    
+    MJRefreshFooterView *footer = [MJRefreshFooterView footer];
+    footer.scrollView = self.ContentTableView;
+    footer.delegate = self;;
+    _footView = footer;
+    
+}
+/**
+ *  上下拉刷新方法
+ */
+-(void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
+{
+    if (refreshView == _footView) {
+        self.indexpage ++;
+    }else{
+        self.indexpage = 1;
+    }
+    [self startListRequestDataWithRefrsh:refreshView andPageNo:[NSString stringWithFormat:@"%d",self.indexpage]];
+    [self performSelector:@selector(doneWithView:) withObject:refreshView afterDelay:0.5];
+}
+
+- (void)doneWithView:(MJRefreshBaseView *)refreshView
+{
+    // 刷新表格
+    [self.ContentTableView reloadData];
+    // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+    [refreshView endRefreshing];
+}
+#pragma mark
+#pragma mark LoadingUI
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewDidLoad];
+    
+    self.indexpage = 1;
+    if (!isReachability) {
+        
+    }else{
+        [self startListRequestDataWithRefrsh:nil andPageNo:[NSString stringWithFormat:@"%d",self.indexpage]];
+    }
+    
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.DataArray = [[NSMutableArray alloc]initWithCapacity:1000];
+    _ContentTableView.backgroundColor = isNomalColor;
+    _BackView.backgroundColor = isSelectColor;
+    self.ContentTableView.tableHeaderView = [MySpaceHeadView HeaderView:self.userName andTag:self];
+    [self GetEgoRefreshView];
+}
+-(void)setHomeUI
+{
+    if (Screen_height == 480) {
+        _ContentTableView.frame = CGRectMake(0, 0, 320, 424);
+    }else{
+        _ContentTableView.frame = CGRectMake(0, 0, 320, 504);
+    }
+    if (self.DataArray.count == 0) {
+        _ContentTableView.scrollEnabled = NO;
+        _BackView.hidden = NO;
+    }else{
+        _ContentTableView.scrollEnabled= YES;
+        _BackView.hidden = YES;
+    }
+}
+#pragma mark
+#pragma mark UITableViewDelegate
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.DataArray.count;
+   
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    MySpaceCell *cell = (MySpaceCell*)[self tableView:_ContentTableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
+}
+
+//-(void)BtnPresss:(UIButton *)btn;
+-(void)BtnPresss:(UIButton *)btn{
+    SenderContentViewController *svc = [[SenderContentViewController alloc]initWithNibName:@"SenderContentViewController" bundle:nil];
+    svc.UserId = self.UserId;
+    [self.navigationController pushViewController:svc animated:YES];
+}
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifyCell = @"cell";
+    MySpaceCell *cell = [tableView dequeueReusableCellWithIdentifier:identifyCell];
+//    if (cell == nil) {
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"MySpaceCell" owner:self options:nil]lastObject];
+//    }
+    /**
+     *  读取数据
+     */
+    MySpaceModel *model = [self.DataArray objectAtIndex:indexPath.row];
+
+    
+    /**
+     *  加载数据
+     */
+    cell.DayLable.text = model.Day;
+    cell.MouthLable.text = model.Mouth;
+    cell.ContentLable.text = model.Content;
+    [cell.PhotoImageView loadImage:model.ImageUrl];
+    [cell.ShareButton addTarget:self action:@selector(ShareAction:) forControlEvents:UIControlEventTouchUpInside];
+    cell.tag = indexPath.row + 100;
+    
+    //lable和imageView的自适应高
+    CGFloat imageHeight = [model.tpgd floatValue];
+    CGFloat labHeight = [self setLablestr:model.Content];
+    //重新调整cell各控件的frame
+//    CGFloat tempHeight = 0.0f;
+    if (cell.PhotoImageView.image.size.width != 0.0f) {
+        imageHeight = 220*cell.PhotoImageView.image.size.height/cell.PhotoImageView.image.size.width;
+    }else
+        imageHeight = 0.0f;
+    
+    cell.ContentLable.frame = CGRectMake(91, 10, 220, labHeight+5);
+    cell.PhotoImageView.frame = CGRectMake(91, 10+labHeight+10, 220, imageHeight);
+    cell.ShareButton.frame = CGRectMake(289, 30+labHeight+imageHeight, 20, 17);
+    cell.CutLineImageView.frame = CGRectMake(91, 57+labHeight+imageHeight, 220, 1);
+    cell.frame = CGRectMake(0, 0, 320, 59+labHeight+imageHeight);
+
+    return cell;
+}
+-(CGFloat)setLablestr:(NSString *)str
+{
+    if (isIOS7) {
+        UIFont * tfont = [UIFont systemFontOfSize:15.0f];
+        //lable.lineBreakMode =NSLineBreakByTruncatingTail ;
+        //高度估计文本大概要显示几行，宽度根据需求自己定义。 MAXFLOAT 可以算出具体要多高
+        // label可设置的最大高度和宽度
+        CGSize size =CGSizeMake(220,400);
+        //    获取当前文本的属性
+        NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
+        //ios7方法，获取文本需要的size，限制宽度
+        CGSize  actualsize =[str boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin  attributes:tdic context:nil].size;
+        return actualsize.height;
+ 
+    }else{
+        UIFont *font = [UIFont systemFontOfSize:15.0f];
+        //设置一个行高上限
+        CGSize size = CGSizeMake(220,400);
+        //计算实际frame大小，并将label的frame变成实际大小
+        CGSize labelsize = [str sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+        return labelsize.height;
+
+    }
+}
+/**
+ *  分享
+ *
+ *  @param sender
+ */
+-(void)ShareAction:(UIButton *)sender
+{
+    ITTShareView *view = [[ITTShareView alloc]init];
+    view.delegate = self;
+    [view ShowShareView];
+}
+-(void)SinaShareBtnClick:(UIButton *)sender{
+    [ShareCommon SinaShare];
+}
+-(void)WeiXinShareBtnClick:(UIButton *)sender{
+    [ShareCommon WeixinShare];
+}
+-(void)QQSpaceShareBtnCLick:(UIButton *)sender{
+    [ShareCommon QQSpaceShare];
+}
+
+#pragma mark 
+#pragma mark UIButtonAction
+- (IBAction)popViewControllerClick:(id)sender {
+    _TabBarControl = (ITTTabBarController*)self.tabBarController;
+    _TabBarControl.tabBarHidden = NO;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)YaoYiYaoButtonClick:(id)sender {
+    YaoYiYaoViewController *mvc= [[YaoYiYaoViewController alloc]initWithNibName:@"YaoYiYaoViewController" bundle:nil];
+    mvc.UserId = self.UserId;
+    [self.navigationController pushViewController:mvc animated:YES];
+}
+@end
